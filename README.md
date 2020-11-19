@@ -1,24 +1,59 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column              | Type   | Options     |
+| ------------------- | ------ | ----------- |
+| nickname            | string | null: false |
+| email               | string | null: false |
+| encrypted_password  | string | null: false |
+| first_name          | string | null: false |
+| last_name           | string | null: false |
+| first_name_kana     | string | null: false |
+| last_name_kana      | string | null: false |
+| birthday            | date   | null: false |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :purchase_record
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column               | Type    | Options     |
+| -------------------- | ------- | ----------- |
+| product_name         | string  | null: false |
+| product_description  | string  | null: false |
+| category_id          | integer | null: false |
+| product_condition_id | integer | null: false |
+| delivery_fee         | integer | null: false |
+| shipment source      | integer | null: false |
+| user_id              | integer | null: false |
+| date_of_shipment     | integer | null: false |
+| price                | integer | null: false |
 
-* Database creation
+### Association
+- belongs_to :users
+- has_one :purchase_record
 
-* Database initialization
+## purchase_record
+| Column   | Type    | Options     |
+| -------- | ------- | ----------- |
+| user_id  | integer | null: false |
+| items_id | integer | null: false |
 
-* How to run the test suite
+### Association
+- belongs_to :items
+- has_one :street_address
 
-* Services (job queues, cache servers, search engines, etc.)
+## street_address テーブル
+| Column        | Type    | Options     |
+| --------------| ------- | ----------- |
+| postal code   | integer | null: false |
+| prefectures   | integer | null: false |
+| municipality  | integer | null: false |
+| address       | integer | null: false |
+| building_name | integer | null: false |
+| phone_number  | integer | null: false |
 
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :purchase_record
