@@ -15,14 +15,14 @@
 
 ### Association
 - has_many :items
-- has_many :purchases_record
+- has_many :purchases_records
 
 ## items テーブル
 
 | Column                    | Type    | Options                        |
 | ------------------------- | ------- | ------------------------------ |
 | product_name              | string  | null: false                    |
-| product_description       | string  | null: false                    |
+| product_description       | text    | null: false                    |
 | category_id               | integer | null: false                    |
 | product_condition_id      | integer | null: false                    |
 | delivery_fee              | integer | null: false                    |
@@ -35,14 +35,15 @@
 - belongs_to :user
 - has_one :purchase_record
 
-## purchase_record
+## purchase_record テーブル
 | Column  | Type    | Options                        |
 | --------| ------- | ------------------------------ |
 | user_id | integer | null: false, foreign_key: true |
 | item_id | integer | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :items
+- belongs_to :item
+- belongs_to :user
 - has_one :street_address
 
 ## street_address テーブル
