@@ -21,14 +21,14 @@
 
 | Column                    | Type    | Options                        |
 | ------------------------- | ------- | ------------------------------ |
-| item_name                 | string  | null: false                    |
-| item_description          | text    | null: false                    |
+| name                 | string  | null: false                    |
+| description          | text    | null: false                    |
 | category_id               | integer | null: false                    |
-| item_condition_id         | integer | null: false                    |
+| condition_id         | integer | null: false                    |
 | delivery_fee_id           | integer | null: false                    |
-| shipment_source           | integer | null: false                    |
+| shipment_source_id        | integer | null: false                    |
 | user_id                   | integer | foreign_key: true              |
-| date_of_shipment          | integer | null: false                    |
+| date_of_shipment_id       | integer | null: false                    |
 | price                     | integer | null: false                    |
 
 ### Association
