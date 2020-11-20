@@ -25,8 +25,8 @@
 | product_description       | text    | null: false                    |
 | category_id               | integer | null: false                    |
 | product_condition_id      | integer | null: false                    |
-| delivery_fee              | integer | null: false                    |
-| shipment source           | integer | null: false                    |
+| delivery_fee_id           | integer | null: false                    |
+| shipment_source           | integer | null: false                    |
 | user_id                   | integer | null: false, foreign_key: true |
 | date_of_shipment          | integer | null: false                    |
 | price                     | integer | null: false                    |
@@ -49,7 +49,7 @@
 ## street_address テーブル
 | Column          | Type    | Options                           |
 | --------------- | ------- | --------------------------------- |
-| postal code     | integer | null: false                       |
+| postal_code     | integer | null: false                       |
 | prefecture_id   | integer | null: false                       |
 | municipality    | string  | null: false                       |
 | address         | string  | null: false                       |
