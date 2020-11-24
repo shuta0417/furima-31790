@@ -103,7 +103,6 @@ RSpec.describe User, type: :model do
       it"ユーザー名全角(カタカナ)、空では登録できない"do
          @user.last_name =""
          @user.valid?
-         binding.pry
          expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
       end
       it "生年月日必須" do
