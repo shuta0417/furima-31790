@@ -73,37 +73,38 @@ RSpec.describe User, type: :model do
       it"ユーザー名全角必須"do
          @user.last_name ='test'
          @user.valid?
-         expect(@user.errors.full_messages).to include("Email can't be blank")
+         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
       it"ユーザー名全角、空では登録できない"do
          @user.first_name =""
          @user.valid?
-         expect(@user.errors.full_messages).to include("Email can't be blank")
+         expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
       end
       it"ユーザー名全角、空では登録できない"do
          @user.last_name =""
          @user.valid?
-         expect(@user.errors.full_messages).to include("Email can't be blank")
+         expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+      end
       it "ユーザー名フリガナ必須" do
         @user.first_name_kana ='test'
         @user.valid?
-        binding.pry
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       it "ユーザー名フリガナ必須" do
         @user.last_name_kana ='test'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
       it"ユーザー名全角(カタカナ)、空では登録できない"do
         @user.first_name =""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
       end
       it"ユーザー名全角(カタカナ)、空では登録できない"do
          @user.last_name =""
          @user.valid?
-         expect(@user.errors.full_messages).to include("Email can't be blank")
+         binding.pry
+         expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
       end
       it "生年月日必須" do
         @user.birthday ='test'
