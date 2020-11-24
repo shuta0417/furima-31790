@@ -33,7 +33,6 @@ RSpec.describe User, type: :model do
       end
       it"emailに@が含まれていない場合に登録ができないこと" do
         @user.email = 'test.co.jp'
-        binding.pry
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it "passwordが空では登録できない" do
@@ -68,19 +67,43 @@ RSpec.describe User, type: :model do
       end
       it "ユーザー名全角必須" do
         @user.first_name ='test'
-        @user.last_name ='test'
-        @user.first_name =""
-        @user.last_name =""
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end 
+      it"ユーザー名全角必須"do
+         @user.last_name ='test'
+         @user.valid?
+         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it"ユーザー名全角、空では登録できない"do
+         @user.first_name =""
+         @user.valid?
+         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it"ユーザー名全角、空では登録できない"do
+         @user.last_name =""
+         @user.valid?
+         expect(@user.errors.full_messages).to include("Email can't be blank")
       it "ユーザー名フリガナ必須" do
         @user.first_name_kana ='test'
-        @user.last_name_kana ='test'
-        @user.first_name =""
-        @user.last_name =""
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        binding.pry
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it "ユーザー名フリガナ必須" do
+        @user.last_name_kana ='test'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it"ユーザー名全角(カタカナ)、空では登録できない"do
+        @user.first_name =""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it"ユーザー名全角(カタカナ)、空では登録できない"do
+         @user.last_name =""
+         @user.valid?
+         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it "生年月日必須" do
         @user.birthday ='test'
