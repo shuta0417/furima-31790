@@ -3,14 +3,25 @@ class Item < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true
-  validates :condition_id, presence: true
-  validates :delivery_fee_id, presence: true
-  validates :shipment_source_id, presence: true
-  validates :date_of_shipment_id, presence: true
-  validates :price, presence: true
-  validates :price, inclusion: { in: 300..9999999 }
+  with_options  presence: true do
+    validates :name, presence: true
+    validates :description
+    validates :category_id
+    validates :condition_id
+    validates :delivery_fee_id
+    validates :shipment_source_id
+    validates :date_of_shipment_id
+    validates :price
+  end
+
+  with_options  presence: true do
+    validates :category_id, numericality: { other_than: 1 }
+    validates :condition_id, numericality: { other_than: 1 }
+    validates :delivery_fee_id, numericality: { other_than: 1 }
+    validates :shipment_source_id, numericality: { other_than: 1 }
+    validates :date_of_shipment_id, numericality: { other_than: 1 }
+  end
+  
   validates :price,format: { with:/\A^[0-9]+$\z/}
+  validates_inclusion_of :price, in: 300..9999999
 end
