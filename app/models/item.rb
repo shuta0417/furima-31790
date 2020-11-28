@@ -2,6 +2,11 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :delivery_fee
+  belongs_to :date_of_shipment
+  belongs_to :shipment_source
 
   with_options  presence: true do
     validates :name, presence: true
@@ -18,8 +23,8 @@ class Item < ApplicationRecord
     validates :category_id, numericality: { other_than: 1 }
     validates :condition_id, numericality: { other_than: 1 }
     validates :delivery_fee_id, numericality: { other_than: 1 }
+    validates :date_of_shipment_id, numericality: { other_than: 0 }
     validates :shipment_source_id, numericality: { other_than: 1 }
-    validates :date_of_shipment_id, numericality: { other_than: 1 }
   end
   
   validates :price,format: { with:/\A^[0-9]+$\z/}
