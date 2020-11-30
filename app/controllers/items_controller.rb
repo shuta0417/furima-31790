@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item =Item.new(item_params)
+    @item = Item.new(item_params)
     if @item.valid?
       @item.save
       redirect_to root_path
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_path
+      redirect_to item_path(@item.id)
     else
       render :edit
     end
