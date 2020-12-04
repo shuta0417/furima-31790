@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :edit, :destroy]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit ]
+  before_action :set_item, only: [:show, :edit, :update]
+
+  before_action :authenticate_user!, only: [:new, :destroy]
+  before_action :set_item, only: [:show, :destroy]
+
 
   def index
    @items = Item.all.order("created_at DESC")
@@ -36,7 +40,6 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-    
   # 商品のユーザー情報（id情報）と現在のログインしているユーザーが同一であれば
   def destroy
     @item.destroy if @item.user.id == current_user.id
