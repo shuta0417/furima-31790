@@ -7,7 +7,7 @@ class PurchaseStreet
     validates :user_id
     validates :item_id
     validates :postal_code
-    validates :date_of_shipment_id, numericality: { other_than: 1 }
+    validates :date_of_shipment_id, numericality: { other_than: 0 }
     validates :municipality
     validates :address
     validates :phone_number 

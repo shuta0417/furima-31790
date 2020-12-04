@@ -90,10 +90,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment source must be other than 1")
       end
-      it "date_of_shipment_idは1の時は保存できない" do
-        @item.date_of_shipment_id = 1
+      it "date_of_shipment_idは0の時は保存できない" do
+        @item.date_of_shipment_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Date of shipment must be other than 1")
+        expect(@item.errors.full_messages).to include("Date of shipment must be other than 0")
       end
     end
   end

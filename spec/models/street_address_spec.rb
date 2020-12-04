@@ -27,6 +27,16 @@ RSpec.describe PurchaseStreet, type: :model do
     end
 
     context '登録がうまくいかないとき' do
+      it "user_idが空だと登録できない" do
+        @purchase_streets.user_id = ''
+        @purchase_streets.valid?
+        expect(@purchase_streets.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空だと登録できない" do
+        @purchase_streets.item_id = ''
+        @purchase_streets.valid?
+        expect(@purchase_streets.errors.full_messages).to include("Item can't be blank")
+      end
       it "postal_codeが空だと登録できない" do
         @purchase_streets.postal_code = ''
         @purchase_streets.valid?
