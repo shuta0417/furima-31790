@@ -1,12 +1,10 @@
 class PurchaseRecordsController < ApplicationController
-
+  before_action :set_item, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
     @purchase_record = PurchaseStreet.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_record = PurchaseStreet.new(purchase_record_params)
     if @purchase_record.valid?
       pay_item
@@ -24,11 +22,15 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_57f9c550a7b70a33a9057c46"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item.price,  # 商品の値段
       card: purchase_record_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end

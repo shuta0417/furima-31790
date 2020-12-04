@@ -36,7 +36,8 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-    
+  end
+   
   # 商品のユーザー情報（id情報）と現在のログインしているユーザーが同一であれば
   def destroy
     @item.destroy if @item.user.id == current_user.id
