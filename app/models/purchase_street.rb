@@ -15,7 +15,6 @@ class PurchaseStreet
   end
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/}
     validates :phone_number, format: { with: /\A\d{10,11}\z/}
-    #validates :phone_number, numericality:
 
   def save
     # 各テーブルにデータを保存する処理を書く

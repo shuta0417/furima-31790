@@ -27,21 +27,26 @@ RSpec.describe PurchaseStreet, type: :model do
     end
 
     context '登録がうまくいかないとき' do
-      it "user_idが空だと登録できない" do
-        @purchase_streets.user_id = ''
-        @purchase_streets.valid?
-        expect(@purchase_streets.errors.full_messages).to include("User can't be blank")
-      end
-      it "item_idが空だと登録できない" do
-        @purchase_streets.item_id = ''
-        @purchase_streets.valid?
-        expect(@purchase_streets.errors.full_messages).to include("Item can't be blank")
-      end
-      it "postal_codeが空だと登録できない" do
-        @purchase_streets.postal_code = ''
-        @purchase_streets.valid?
-        expect(@purchase_streets.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
-      end
+        it "user_idが空だと登録できない" do
+          @purchase_streets.user_id = ''
+          @purchase_streets.valid?
+          expect(@purchase_streets.errors.full_messages).to include("User can't be blank")
+        end
+        it "item_idが空だと登録できない" do
+          @purchase_streets.item_id = ''
+          @purchase_streets.valid?
+          expect(@purchase_streets.errors.full_messages).to include("Item can't be blank")
+        end
+        it "date_of_shipment_idが0だと登録できない" do
+          @purchase_streets.date_of_shipment_id = '0'
+          @purchase_streets.valid?
+          expect(@purchase_streets.errors.full_messages).to include("Date of shipment must be other than 0")
+        end
+        it "postal_codeが空だと登録できない" do
+          @purchase_streets.postal_code = ''
+          @purchase_streets.valid?
+          expect(@purchase_streets.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
+        end
         it "date_of_shipment_idが空だと登録できない" do
           @purchase_streets.date_of_shipment_id = ''
           @purchase_streets.valid?
