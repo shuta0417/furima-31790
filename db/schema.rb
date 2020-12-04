@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_025254) do
+ActiveRecord::Schema.define(version: 2020_11_24_074306) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -47,26 +47,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_025254) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "purchase_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "item_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "street_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code", null: false
-    t.integer "date_of_shipment_id", null: false
-    t.string "municipality", null: false
-    t.string "address", null: false
-    t.string "building_name"
-    t.string "phone_number", null: false
-    t.bigint "purchase_record_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["purchase_record_id"], name: "index_street_addresses_on_purchase_record_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -86,5 +66,4 @@ ActiveRecord::Schema.define(version: 2020_12_01_025254) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "street_addresses", "purchase_records"
 end
