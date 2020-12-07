@@ -46,6 +46,7 @@
 - belongs_to :user
 - has_one :street_address
 
+
 ## street_address テーブル
 | Column          | Type       | Options                           |
 | --------------- | ---------  | --------------------------------- |
@@ -60,7 +61,3 @@
 
 ### Association
 - belongs_to :purchase_record
-
-
-
-
